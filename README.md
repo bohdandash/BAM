@@ -1,2 +1,58 @@
-# BAM
- An accessible, flexible, and visually-oriented software tool that allows you to quickly assess the main geometric consequences of an asteroid impact.
+# BAM(Bohdan's Armageddon) — Bolide & Asteroid Modeling
+
+A desktop simulation for procedural asteroid generation, atmospheric entry physics, and 3D impact crater visualization.
+
+---
+
+## Under the Hood (How it works)
+
+* **Real-Time Physics Solver:** Calculates atmospheric deceleration, drag, heating, and thermal ablation (mass loss) step-by-step as the bolide falls through the atmosphere.
+* **Hardware-Accelerated Rendering:** Uses OpenTK and custom GLSL shaders to render 3D crater deformations directly on the GPU, completely avoiding CPU bottlenecks.
+* **Procedural Mesh Generation:** Builds unique, irregular asteroid meshes using 3D Perlin noise and harmonic distortions. Fully exportable as standard `.obj` files.
+* **Empirical Impact Math:** Maps final kinetic energy and velocity to TNT equivalence to generate scientifically grounded crater dimensions, rim heights, and ejecta blankets.
+
+---
+
+## Core Features
+
+| Module | What it does |
+| :--- | :--- |
+| **Procedural Asteroids** | Generates non-spherical 3D asteroid meshes with parametric craters (previewed via WPF HelixToolkit). |
+| **Entry Simulator** | Simulates the descent trajectory, dynamically tracking velocity, aerodynamic drag, and vaporization thresholds. |
+| **Crater Engine** | Estimates transient cavity, rim height, and uplift structures based on impact kinetics. |
+| **3D Visualizer** | Renders asymmetrical crater grids and directional impact vectors in a custom OpenGL viewport. |
+
+---
+
+## The Physics
+
+The engine dynamically calculates key trajectory metrics using real-world equations:
+
+* **Atmospheric Drag:**
+  $$F_d = \frac{1}{2} C_d \rho(h) A v^2$$
+* **Radiative Cooling (Stefan-Boltzmann):**
+  $$P_{rad} = \epsilon \sigma A_{surf} T^4$$
+* **Impact Energy Equivalent:**
+  $$E_k = \frac{1}{2} m v_{impact}^2 \quad \longrightarrow \quad Y_{TNT} = \frac{E_k}{4.184 \times 10^9 \text{ J/ton}}$$
+
+---
+
+## Tech Stack
+
+* **Platform:** .NET Framework / Windows Forms
+* **Graphics:** OpenTK (OpenGL 3.3 Core Profile, GLSL)
+* **UI & Viewports:** [Helix Toolkit WPF](https://github.com/helix-toolkit/helix-toolkit), Guna.UI2
+* **Export:** Wavefront 3D Object (`.obj`)
+
+---
+
+## Getting Started
+
+### Prerequisites
+* Visual Studio 2022 with **.NET desktop development** workload.
+* GPU supporting OpenGL 3.3 Core Profile or higher.
+
+### Building
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/bohdandash/BAM.git](https://github.com/bohdandash/BAM.git)
