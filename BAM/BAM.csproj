@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulationContext.cs" />
     <EmbeddedResource Include="MainContainerForm.resx">
       <DependentUpon>MainContainerForm.cs</DependentUpon>
     </EmbeddedResource>

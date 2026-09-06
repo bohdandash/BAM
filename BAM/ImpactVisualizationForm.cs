@@ -3,15 +3,10 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.IO;
 using System.Text;
 using System.Globalization; // To correctly write dots in numbers
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BAM
@@ -78,7 +73,8 @@ namespace BAM
             // mesh generation
             GenerateMesh(150, 150, Craterwidth / 10, Craterheight / 10, CraterAngle, 180);
 
-            SaveToObj("crater.obj");
+            //anti-pattern?
+            //SaveToObj("crater.obj");
 
             AddImpactArrow(Craterheight / 10, CraterAngle, 180,
                heightAbove: 5,
@@ -486,6 +482,55 @@ namespace BAM
             Close();
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // optimizing gpu resources when closing the window
+            if (shaderProgram != 0)
+            {
+                GL.DeleteProgram(shaderProgram);
+            }
+
+            if (vao != 0)
+            {
+                GL.DeleteVertexArray(vao);
+            }
+
+            if (vbo != 0)
+            {
+                GL.DeleteBuffer(vbo);
+            }
+
+            if (ebo != 0)
+            {
+                GL.DeleteBuffer(ebo);
+            }
+
+            base.OnFormClosing(e);
+        }
+
+        private void BtnExportObj_Click(object sender, EventArgs e)
+        {
+            if (vertices == null || vertices.Length == 0)
+            {
+                MessageBox.Show("No generated crater mesh to export.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "Wavefront 3D Object (*.obj)|*.obj|All files (*.*)|*.*";
+                sfd.Title = "Export Crater 3D Model";
+                sfd.FileName = $"crater_a{CraterAngle}_d{Craterheight}.obj";
+                sfd.RestoreDirectory = true;
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    SaveToObj(sfd.FileName);
+                    MessageBox.Show("Crater mesh successfully saved.", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
         public void SaveToObj(string filePath)
         {
             // using StringBuilder to quickly generate text
@@ -522,11 +567,11 @@ namespace BAM
             try
             {
                 File.WriteAllText(filePath, sb.ToString());
-                Console.WriteLine($"Saved: {filePath}");
+                MessageBox.Show($"Saved: {filePath}");
             }
             catch (System.Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Failed to export mesh: {ex.Message}", "File I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
