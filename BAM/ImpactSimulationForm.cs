@@ -145,7 +145,7 @@ namespace BAM
                     double angleEntry;
                     while(true)
                     {
-                        if(!double.TryParse(textBox.Text, out angleEntry) && angleEntry < 0 && angleEntry > 90)
+                        if(!double.TryParse(textBox.Text, out angleEntry) || angleEntry <= 0 || angleEntry >= 90)
                         {
                             MessageBox.Show($"The value of {angleValue} should be > 0 but less than 90");
                             textBox.Focus();
@@ -395,23 +395,21 @@ namespace BAM
 
             // the results
             guna2GradientButton4.Text += ($"Initial parameters:\n");
-            guna2GradientButton4.Text += ($"- Masa: {asteroidMass:N0} kg\n");
-            guna2GradientButton4.Text += ($"- Radius: {asteroidRadius:N2} м\n");
-            guna2GradientButton4.Text += ($"- Initial height: {initialHeight:N0} м\n");
-            guna2GradientButton4.Text += ($"- Initial speed: {initialVelocity:N2} м/s\n\n");
+            guna2GradientButton4.Text += ($"- Mass: {asteroidMass:N0} kg\n");
+            guna2GradientButton4.Text += ($"- Radius: {asteroidRadius:N2} m\n");
+            guna2GradientButton4.Text += ($"- Initial height: {initialHeight:N0} m\n");
+            guna2GradientButton4.Text += ($"- Initial speed: {initialVelocity:N2} m/s\n\n");
 
             guna2GradientButton4.Text += ($"Result:\n");
-            guna2GradientButton4.Text += ($"- Impact time: {impactTime:N2} секунд\n");
-            guna2GradientButton4.Text += ($"- Maximum speed: {impactVelocity:N0} м/s ({impactVelocity * 3.6:N0} km/h)\n");
+            guna2GradientButton4.Text += ($"- Impact time: {impactTime:N2} seconds\n");
+            guna2GradientButton4.Text += ($"- Maximum speed: {impactVelocity:N0} m/s ({impactVelocity * 3.6:N0} km/h)\n");
             guna2GradientButton4.Text += ($"- Maximum temperature: {maxTemperature:N0} K ({maxTemperature - 273.15:N0}°C)\n");
-            guna2GradientButton4.Text += ($"- Speed ​​at impact: {impactVelocity:N0} м/s ({impactVelocity * 3.6:N0} km/h)\n");
+            guna2GradientButton4.Text += ($"- Speed ​​at impact: {impactVelocity:N0} m/s ({impactVelocity * 3.6:N0} km/h)\n");
             guna2GradientButton4.Text += ($"- Impact energy: {tntEquivalent:N2} tons of TNT equivalent\n\n");
 
             // +- what to expect
             guna2GradientButton4.Text += ($"Damage:\n");
-            if (tntEquivalent < 1)
-            { guna2GradientButton4.Text += ("- Minor impact. The meteorite will likely disintegrate completely in the atmosphere."); chart2.Visible = false; chart3.Visible = false;}
-            else if (tntEquivalent < 100)
+            if (tntEquivalent < 100)
                 guna2GradientButton4.Text += ("- Minor local damage. Similar to a small explosion of conventional explosives.");
             else if (tntEquivalent < 10000)
                 guna2GradientButton4.Text += ("- Serious local destruction. Compared to the Tunguska event in 1908 (forest destruction).");
@@ -423,8 +421,10 @@ namespace BAM
             MessageBox.Show("The simulation is complete! The results are displayed on the graph and in the text box.");
 
             if (tntEquivalent < 1)
-            {
-                Application.Exit();
+            { 
+                guna2GradientButton4.Text += ("- Minor impact. The meteorite will likely disintegrate completely in the atmosphere."); 
+                chart2.Visible = false; 
+                chart3.Visible = false; 
             }
             else
             {
@@ -678,10 +678,10 @@ namespace BAM
 
             // analysis
             guna2GradientButton4.Text += ("\n\nCrater analysis:\n");
-            guna2GradientButton4.Text += ($"- Approximate crater diameter: {craterDiameter:N0} м\n");
-            guna2GradientButton4.Text += ($"- Approximate crater depth: {craterDepth:N0} м\n");
-            guna2GradientButton4.Text += ($"- Approximate rim height: {rimHeight:N0} м\n");
-            guna2GradientButton4.Text += ($"- Estimated ejection radius: {ejectaBlanketRadius:N0} м\n");
+            guna2GradientButton4.Text += ($"- Approximate crater diameter: {craterDiameter:N0} m\n");
+            guna2GradientButton4.Text += ($"- Approximate crater depth: {craterDepth:N0} m\n");
+            guna2GradientButton4.Text += ($"- Approximate rim height: {rimHeight:N0} m\n");
+            guna2GradientButton4.Text += ($"- Estimated ejection radius: {ejectaBlanketRadius:N0} m\n");
 
 
             // morphology
@@ -706,8 +706,8 @@ namespace BAM
             CraterData.HasValidData = true;
 
             MessageBox.Show($"Data saved:" +
-                $"\nDepth: {depth} м" +
-                $"\nDiameter: {diameter} м" +
+                $"\nDepth: {depth} m" +
+                $"\nDiameter: {diameter} m" +
                 $"\n\nHere comes the Visualization");
         }
 
