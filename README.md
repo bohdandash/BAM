@@ -64,15 +64,21 @@ The engine dynamically calculates key trajectory metrics using real-world equati
    git clone [https://github.com/bohdandash/BAM.git](https://github.com/bohdandash/BAM.git)
 
 ### Preview
-1. **Main Screen:**  
-   ![Parameter Configuration](./images/Main20%Screen.png)
+### Preview & Architecture
 
-2. **Asteroid Creation Screen:**  
-   ![Procedural 3D Asteroid](./images/Asteroid20%Creation.png)
+1. **Main Dashboard:**  
+   ![Main Screen](./images/Main%20Screen.png)  
+   *Initial setup interface for physical boundary conditions, material properties, and simulation control.*
 
-3. **Simulation Screen:**  
-   ![Trajectory and Ablation](./images/Simulation20%Screen.png)
+2. **Procedural Asteroid Synthesis:**  
+   ![Asteroid Creation](./images/Asteroid%20Creation.png)  
+   *Parametric 3D mesh synthesis and procedural surface deformation in real time.*
 
-4. **Visualization Screen:**  
-   ![Impact Crater Result](./images/Visualization20%Screen.png)
+3. **Trajectory & Atmospheric Simulation:**  
+   ![Simulation Screen](./images/Simulation%20Screen.png)  
+   *Numerical computation of atmospheric drag, energy dissipation, and trajectory coordinates.*
+
+4. **Visual Analysis & Impact Results:**  
+   ![Visualization Screen](./images/Visualization%20Screen.png)  
+   *Rendered 3D visual feedback, surface morphology inspection, and deformation output via OpenGL.*
 
