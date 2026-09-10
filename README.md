@@ -62,3 +62,17 @@ The engine dynamically calculates key trajectory metrics using real-world equati
 1. Clone the repository:
    ```bash
    git clone [https://github.com/bohdandash/BAM.git](https://github.com/bohdandash/BAM.git)
+
+### Preview
+1. **Main Screen:**  
+   ![Parameter Configuration](./images/Main20%Screen.png)
+
+2. **Asteroid Creation Screen:**  
+   ![Procedural 3D Asteroid](./images/Asteroid20%Creation.png)
+
+3. **Simulation Screen:**  
+   ![Trajectory and Ablation](./images/Simulation20%Screen.png)
+
+4. **Visualization Screen:**  
+   ![Impact Crater Result](./images/Visualization20%Screen.png)
+
