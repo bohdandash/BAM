@@ -1,4 +1,10 @@
 # BAM(Bohdan's Armageddon) — Bolide & Asteroid Modeling
+[![C#](https://img.shields.io/badge/C%23-.NET%20Framework%20%2F%20.NET-239120?style=flat-square&logo=csharp&logoColor=white)](https://dotnet.microsoft.com/)
+[![OpenGL](https://img.shields.io/badge/OpenGL-3.3%20Core-5586A4?style=flat-square&logo=opengl&logoColor=white)](https://www.opengl.org/)
+[![OpenTK](https://img.shields.io/badge/OpenTK-3D%20Graphics-007acc?style=flat-square)](https://opentk.net/)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white)](https://www.microsoft.com/windows)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
+[![Conference](https://img.shields.io/badge/Publication-MicroCAD%202025%20(p.%201304)-orange?style=flat-square&logo=academia)](https://ndch.kpi.kharkov.ua/wp-content/uploads/2025/06/Zbirnik-tez-2025.pdf#page=1304)
 
 A desktop simulation for procedural asteroid generation, atmospheric entry physics, and 3D impact crater visualization.
 
